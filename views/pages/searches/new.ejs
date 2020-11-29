@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>new</title>
 </head>
+
 <body>
-    <form action="" method="GET">
-        <input type="text" hint='Enter Title or Auther'>
-            <label for="">Title <input  type="radio" name="title" id="title" ></label>
-            <label for=""> Auther <input  type="radio" name="Auther" id="Auther" ></label>            
-            <button type="submit"> Search The Google Books API </button>
+    <form action="/sendBookInfoGet" method="get">
+        <input type="text" name="myText">
+        <label >Title</label> <input type="radio" name="search" value="title">
+        <label > Auther </label><input type="radio" name="search" value="auther">
+        <button type="submit" id="sendInfo"> Search The Google Books API </button>
     </form>
 </body>
+
 </html>
