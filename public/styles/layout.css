@@ -1,0 +1,58 @@
+/* general positinging  */
+
+@media (min-width:100px){
+.anqers{
+    display: flex;
+    justify-content: space-around;
+}
+
+.loopContent{
+text-align: center;
+border: 1px solid gray;
+padding: 10px;
+width: 30%;
+margin: 20px;
+font-family: monospace;
+}
+
+
+.loops{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.test{
+    text-align: center;
+    padding: 20px;
+    font-size: x-large;
+}
+
+
+.form{
+   display: flex;
+   justify-content: center;
+}
+.form form{
+    margin-top: 30px;
+padding: 40px;
+border: 1px solid gray;
+width: 70%;
+}
+.form form .textInput{
+width: 70%;
+
+}
+.form form .textInputDiiv{
+display: flex;
+justify-content: center;
+}
+
+
+
+
+
+
+
+
+}
