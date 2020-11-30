@@ -18,12 +18,21 @@ server.use(express.static('./public'));// connect the folders on the machine (lo
 server.set('view engine', 'ejs');// hi theeeere am using ejs !
 
 server.get('/', (req, res) => {
-res.render('pages/index');
+    res.render('pages/index');
 })
-    server.get('/searches/new', (req, res) => {
+
+
+
+
+server.get('/searches/new', (req, res) => {
     res.render('pages/searches/new');
 
 })
+
+
+
+
+
 
 
 server.get('/sendBookInfoGet', bookHandlerFun);
@@ -33,7 +42,7 @@ function bookHandlerFun(req, res) {
     console.log(query1);
     let url = ``;
     if (query1 == 'auther') {
-        url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${searchQuery}`;
+         
     }
     else if (query1 == 'title') {
         url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+intitle:${searchQuery}`;
@@ -47,13 +56,21 @@ function bookHandlerFun(req, res) {
 
             res.render('pages/searches/show', { fn: Book.all });
         })
-        
-        .catch(()=>{
-            let error='you have a problem in the superagent';
-            res.render('pages/error',{er:error});
+
+        .catch(() => {
+            let error = 'you have a problem in the superagent';
+            res.render('pages/error', { er: error });
         })
 
 }
+
+
+
+
+
+
+
+
 Book.all = [];
 function Book(bookObj) {
     if (bookObj.imageLinks.thumbnail) {
@@ -72,9 +89,9 @@ function Book(bookObj) {
     else {
         this.img = `https://i.imgur.com/J5LVHEL.jpg`;//ensure it is secure website
     }
-    this.title = bookObj.title;
-    this.descreption = bookObj.description;
-    this.autherName = bookObj.authors; // array
+    this.title = bookObj.title ?bookObj.title : ' There is no title for this book';
+    this.descreption = bookObj.description ?bookObj.description : 'There is no descreption ' ;
+    this.autherName = bookObj.authors? bookObj.authors[0]: 'Ayther is not Known'; // array
     Book.all.push(this);
 }
 
