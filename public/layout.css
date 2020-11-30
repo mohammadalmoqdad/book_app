@@ -1,0 +1,28 @@
+/* general positinging  */
+
+@media (min-width:100px){
+.anqers{
+    display: flex;
+    justify-content: space-around;
+}
+
+.loopContent{
+text-align: center;
+border: 1px solid gray;
+padding: 10px;
+width: 30%;
+margin: 20px;
+font-family: monospace;
+}
+
+
+.loops{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+
+
+}

@@ -50,7 +50,7 @@ function bookHandlerFun(req, res) {
         
         .catch(()=>{
             let error='you have a problem in the superagent';
-            res.render('/pages/error',{er:error});
+            res.render('pages/error',{er:error});
         })
 
 }

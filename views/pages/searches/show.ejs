@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="state.css">
+    <link rel="stylesheet" href="theme.css">
 </head>
+
 <body>
-    <% for(let i=0;i<fn.length;i++){ %>
-    <h1><%= fn[i].title %></h1>
-    <h3><%= fn[i].autherName %></h3>
-    <p><%=  fn[i].descreption %></p>
-    <img src="<%= fn[i].img %>" alt="" srcset="">
-    <% } %>
+    <div class="loops">
+        <% for(let i=0;i<fn.length;i++){ %>
+        <div class="loopContent">
+            <h1><%= fn[i].title %></h1>
+            <h3><%= fn[i].autherName %></h3>
+            <img src="<%= fn[i].img %>" alt="" srcset="">
+            <p><%=  fn[i].descreption %></p>
+        </div>
+        <% } %>
+
+    </div>
 </body>
+
 </html>

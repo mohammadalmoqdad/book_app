@@ -4,16 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>new</title>
+    <title>new search</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="state.css">
+    <link rel="stylesheet" href="theme.css">
 </head>
 
+
+
 <body>
-    <form action="/sendBookInfoGet" method="get">
-        <input type="text" name="myText">
-        <label >Title</label> <input type="radio" name="search" value="title">
-        <label > Auther </label><input type="radio" name="search" value="auther">
-        <button type="submit" id="sendInfo"> Search The Google Books API </button>
-    </form>
+    <h1 class="test">teeeeeeeeeeest</h1>
+    <div class="form">
+
+        <form action="/sendBookInfoGet" method="get">
+
+            <div class="textInput"> <input type="text" placeholder='Search by name' name="myText"></div>
+            <div class="radioButtons"> <label class="title">Title</label> <input type="radio" name="search"
+                    value="title">
+                <label class="auther"> Auther </label><input type="radio" name="search" value="auther">
+            </div>
+            <div class="btn"><button class="submitButton" type="submit" id="sendInfo"> Search The Google Books API
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+
 </body>
 
 </html>
