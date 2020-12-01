@@ -63,4 +63,13 @@
 .loopContent img{
     margin: 15px;
     }
+
+
+
+.detailsPage{
+    text-align: center;
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: bold;
+}
 }
