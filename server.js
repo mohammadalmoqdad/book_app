@@ -17,8 +17,10 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 server.use(express.static('./public'));// connect the folders on the machine (locally)
 server.set('view engine', 'ejs');// hi theeeere am using ejs !
+const methodOverride = require('method-override');
+server.use(methodOverride('_method'));
 
-
+server.use(express.urlencoded({extended:true}));
 
 
 
@@ -36,11 +38,10 @@ server.get('/searches/new', (req, res) => {
     res.render('pages/searches/new');
 
 })
-
 server.get('/addChosenBook',addBookToDB);
 server.get('/sendBookInfoGet', bookHandlerFun);
-
-
+server.put('/UpadateBookInfo/:id',UpadateFormDataHandlerFun);
+server.delete('/deleteBook/:id',deleteHandlerFun);
 
 
 
@@ -53,7 +54,6 @@ server.get('/sendBookInfoGet', bookHandlerFun);
 function bookHandlerFun(req, res) {
     let searchQuery = req.query.myText;// take it from the ejs form
     let query1 = req.query.search;// take it from the ejs form
-    console.log(query1);
     let url = ``;
     if (query1 == 'auther') {
         url = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauther:${searchQuery}`;
@@ -79,13 +79,10 @@ function bookHandlerFun(req, res) {
 
 function showaAllDetailsHandlerFun (req, res){
     let id =req.params.id;
-    console.log(req.params.id)
     let SQL=`SELECT * FROM books WHERE id=$1`;
     let values=[id];
     client.query(SQL,values)
-    .then(result=>{
-        console.log(result.rows)
-        console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+    .then(result=>{     
         res.render('pages/books/details',{books:result.rows[0]})
     })
 
@@ -94,16 +91,45 @@ function showaAllDetailsHandlerFun (req, res){
 
 
 function addBookToDB(req,res){
-    
     let insertQuery=`INSERT INTO books (title,author,isbn,image_url,description) VALUES($1,$2,$3,$4,$5) RETURNING id`
     let{title,author,isbn,image_url,description}=req.query;
     let values=[title,author,isbn,image_url,description];
     client.query(insertQuery,values)
     .then(result=>{
-        console.log(result.rows[0].id);
+       
         res.redirect(`/books/${result.rows[0].id}`)
     })
 }
+
+
+
+
+function UpadateFormDataHandlerFun(req,res){
+    let SQL =`UPDATE books SET title=$1,author=$2,image_url=$3,isbn=$4,description=$5 WHERE id=$6`;
+    let {title,author,image_url,isbn,description}= req.body;
+    let values=[title,author,image_url,isbn,description,req.params.id]
+    client.query(SQL,values)
+    .then(()=>{
+      res.redirect(`/books/${req.params.id}`)
+    })
+
+}
+
+
+function deleteHandlerFun(req,res){
+let id =req.params.id;
+let SQL =`DELETE FROM books WHERE id=$1`;
+let values=[id];
+client.query(SQL,values)
+.then(()=>{
+    res.redirect('/');
+})
+
+
+}
+
+
+
 
 
 
