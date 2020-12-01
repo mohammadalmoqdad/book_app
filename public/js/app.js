@@ -9,3 +9,8 @@ function toggleHamburger(){
     navbar.classList.toggle("showNav")
     ham.classList.toggle("showClose")
   }
+
+$('#updataForm').hide();
+$('#showUpdateForm').on('click',function (){
+$('#updataForm').toggle();
+})
